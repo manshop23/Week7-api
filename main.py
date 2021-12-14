@@ -11,9 +11,12 @@ from bs4 import BeautifulSoup
 from fastapi.responses import PlainTextResponse
 
 app = FastAPI()
+
+
+@app.get("/Ronnakon")
 def Ronnakon():
     return {"Hello"}
-    
+
 def result(res):
     return {"result":res}
 
