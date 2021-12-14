@@ -17,6 +17,10 @@ app = FastAPI()
 def Ronnakon():
     return {"Hello"}
 
+@app.get("/len")
+async def add(a):
+    return len(a)
+
 def result(res):
     return {"result":res}
 
