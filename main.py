@@ -11,7 +11,9 @@ from bs4 import BeautifulSoup
 from fastapi.responses import PlainTextResponse
 
 app = FastAPI()
-
+def Ronnakon():
+    return {"Hello"}
+    
 def result(res):
     return {"result":res}
 
