@@ -9,14 +9,14 @@ import math
 import requests
 from bs4 import BeautifulSoup
 from fastapi.responses import PlainTextResponse
+from pythainlp import word_tokenize
 
 app = FastAPI()
 
 
-
 @app.get("/Ronnakon")
-def Ronnakon():
-    return {"Hello"}
+def Ronnakon(text):
+    return word_tokenize(text)
 
 @app.get("/len")
 async def add(a):
