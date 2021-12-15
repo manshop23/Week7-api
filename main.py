@@ -14,6 +14,8 @@ app = FastAPI()
 
 @app.post("/health")
 async def BMI(height: str = Form(...), weight: str = Form(...)):
+    height = float(height)
+    weight = float(weight)
     h = height / 100
     bmi = (weight/(math.pow(h,2)))
     if bmi >= 40:
