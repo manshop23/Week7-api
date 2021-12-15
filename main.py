@@ -12,6 +12,21 @@ from fastapi.responses import PlainTextResponse
 
 app = FastAPI()
 
+@app.get("/Ronnakon")
+def Ronnakon():
+    return {"Hello"}
+
+@app.get("/len")
+async def add(a):
+    return len(a)
+
+def result(res):
+    return {"result":res}
+
+@app.get("/")
+async def main():
+    return 'Hello World'
+
 @app.post("/health")
 async def BMI(height: str = Form(...), weight: str = Form(...)):
     height = float(height)
@@ -32,20 +47,6 @@ async def BMI(height: str = Form(...), weight: str = Form(...)):
         shape = 'Mild Thinness'
     return {"BMI = ": bmi, "your shape ": shape}
 
-@app.get("/Ronnakon")
-def Ronnakon():
-    return {"Hello"}
-
-@app.get("/len")
-async def add(a):
-    return len(a)
-
-def result(res):
-    return {"result":res}
-
-@app.get("/")
-async def main():
-    return 'Hello World'
 
 @app.get("/test")
 async def test():
