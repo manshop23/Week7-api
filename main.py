@@ -12,25 +12,25 @@ from fastapi.responses import PlainTextResponse
 
 app = FastAPI()
 
-@app.post("/health")
-async def BMI(height: str = Form(...), weight: str = Form(...)):
+# @app.post("/health")
+# async def BMI(height: str = Form(...), weight: str = Form(...)):
 
-    h = height / 100
-    bmi = (weight/(math.pow(h,2)))
-    if bmi >= 40:
-        shape = 'อ้วนขั้นสูงสุด'
-    elif bmi >= 35:
-        shape = 'อ้วนขั้นที่ 2'
-    elif bmi >= 28.5:
-        shape = 'อ้วนขั้นที่ 1'
-    elif bmi >= 23.5:
-        shape = 'น้ำหนักเกิน'
-    elif bmi >= 18.5:
-        shape = 'อยู่ในเกณฑ์ปกติ'
-    else:
-        shape = 'น้ำหนักต่ำกว่าเกณฑ์'
+#     h = height / 100
+#     bmi = (weight/(math.pow(h,2)))
+#     if bmi >= 40:
+#         shape = 'อ้วนขั้นสูงสุด'
+#     elif bmi >= 35:
+#         shape = 'อ้วนขั้นที่ 2'
+#     elif bmi >= 28.5:
+#         shape = 'อ้วนขั้นที่ 1'
+#     elif bmi >= 23.5:
+#         shape = 'น้ำหนักเกิน'
+#     elif bmi >= 18.5:
+#         shape = 'อยู่ในเกณฑ์ปกติ'
+#     else:
+#         shape = 'น้ำหนักต่ำกว่าเกณฑ์'
 
-    return {"ค่า BMI คือ ": bmi, "ลักษณะรูปร่างคือ": shape}
+#     return {"ค่า BMI คือ ": bmi, "ลักษณะรูปร่างคือ": shape}
 
 @app.get("/Ronnakon")
 def Ronnakon():
