@@ -27,25 +27,25 @@ def result(res):
 async def main():
     return 'Hello World'
 
-@app.post("/health")
-async def BMI(height: str = Form(...), weight: str = Form(...)):
-    height = float(height)
-    weight = float(weight)
-    h = height / 100
-    bmi = (weight/(math.pow(h,2)))
-    if bmi >= 40:
-        shape = 'Obese Class III'
-    elif bmi >= 35:
-        shape = 'Obese Class II'
-    elif bmi >= 28.5:
-        shape = 'Obese Class I'
-    elif bmi >= 23.5:
-        shape = 'Overweight'
-    elif bmi >= 18.5:
-        shape = 'Normal'
-    else:
-        shape = 'Mild Thinness'
-    return {"BMI = ": bmi, "your shape ": shape}
+# @app.post("/health")
+# async def BMI(height: str = Form(...), weight: str = Form(...)):
+#     height = float(height)
+#     weight = float(weight)
+#     h = height / 100
+#     bmi = (weight/(math.pow(h,2)))
+#     if bmi >= 40:
+#         shape = 'Obese Class III'
+#     elif bmi >= 35:
+#         shape = 'Obese Class II'
+#     elif bmi >= 28.5:
+#         shape = 'Obese Class I'
+#     elif bmi >= 23.5:
+#         shape = 'Overweight'
+#     elif bmi >= 18.5:
+#         shape = 'Normal'
+#     else:
+#         shape = 'Mild Thinness'
+#     return {"BMI = ": bmi, "your shape ": shape}
 
 
 @app.get("/test")
