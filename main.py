@@ -12,10 +12,10 @@ from fastapi.responses import PlainTextResponse
 
 app = FastAPI()
 
-@app.post("/login/")
-async def login(username: str = Form(...), password: str = Form(...)):
-    return {"username": username}
-    
+# @app.post("/login/")
+# async def login(username: str = Form(...), password: str = Form(...)):
+#     return {"username": username}
+
 @app.get("/Ronnakon")
 def Ronnakon():
     return {"Hello"}
