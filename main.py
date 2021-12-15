@@ -12,7 +12,10 @@ from fastapi.responses import PlainTextResponse
 
 app = FastAPI()
 
-
+@app.post("/language/")
+async def langauge(name: str = Form(...), type: str = Form(...)):
+    return {"name": name, "type": type}
+    
 @app.get("/Ronnakon")
 def Ronnakon():
     return {"Hello"}
