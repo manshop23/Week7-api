@@ -12,7 +12,7 @@ from fastapi.responses import PlainTextResponse
 
 app = FastAPI()
 
-@app.post("/health/")
+@app.post("/health")
 async def BMI(height: str = Form(...), weight: str = Form(...)):
 
     h = height / 100
