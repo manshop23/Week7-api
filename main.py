@@ -15,7 +15,7 @@ app = FastAPI()
 
 @app.post("/cleaning")
 def cleaning(text):
-  clist =  "'\"“‘()[]" 
+  clist =  "'\"“”‘’()[]" 
   # clist = ['"',"'", "“","”","‘","’","(",")","[","]"]
   cdict = {
   '"' : '"',
