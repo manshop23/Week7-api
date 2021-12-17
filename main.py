@@ -13,6 +13,54 @@ from pythainlp import word_tokenize
 
 app = FastAPI()
 
+@app.post("/cleaning")
+def cleaning(text):
+  clist =  "'\"“‘()[]" 
+  # clist = ['"',"'", "“","”","‘","’","(",")","[","]"]
+  cdict = {
+  '"' : '"',
+  "'": "'",
+  "“": "”",
+  "‘": "’",
+  "(":")",
+  "[": "]"
+  }
+
+  list_cleaning = []
+  x = 0
+  y = 0
+  state =0
+  state_s_d = 0
+  # for x in df[0:20].iterrows():
+  #   text = x[1].title
+  for i,c in enumerate(text):
+      if c  not in clist:
+        continue
+      else:
+        # print(c,'--->',cdict.get(c))
+        if (c  in cdict and state == 0):
+          e = cdict.get(c)
+          x = i
+          state = 1 
+          print (c)
+          continue
+         
+        if (c != e and state != 1 ):
+            # print (e)
+          continue
+        else:
+          # print (e)
+          y = i
+          t = text[x + 1: y]  
+          t = t.strip(" ")
+          list_cleaning.append(t)
+          x = 0
+          y = 0
+          state = 0
+          continue
+  return list_cleaning   
+
+
 
 @app.get("/Ronnakon")
 def Ronnakon(text):
