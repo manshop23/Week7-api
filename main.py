@@ -61,6 +61,12 @@ def cleaning(text):
           continue
   return list_cleaning   
 
+@app.post("/files/")
+async def create_file(file: bytes = File(...)):
+   return {
+      "file_size": len(file)
+   }
+   
 @app.post("/cleaning_file")
 def cleaning_file(xlsx_file: UploadFile = File(...)):
     if xlsx_file.filename.endswith('.csv') or xlsx_file.filename.endswith('.xlsx'):
