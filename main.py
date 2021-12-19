@@ -1,7 +1,7 @@
 #Author: Chatchawal Sangkeettrakarn
 #Date: September 20,2020.
 
-from fastapi import FastAPI , Form
+from fastapi import FastAPI , Form ,File, UploadFile
 import uvicorn
 import numpy as np
 import re
@@ -10,6 +10,7 @@ import requests
 from bs4 import BeautifulSoup
 from fastapi.responses import PlainTextResponse
 from pythainlp import word_tokenize
+import pandas as pd
 
 app = FastAPI()
 
@@ -60,7 +61,58 @@ def cleaning(text):
           continue
   return list_cleaning   
 
+@app.post("/cleaning_file")
+def cleaning_file(file: UploadFile = File(...)):
+    if file.filename.endswith('.csv') or file.filename.endswith('.xlsx'):
+        df = pd.read_excel(file, index_col=None)
+        clist =  "'\"“”‘’()[]" 
+        # clist = ['"',"'", "“","”","‘","’","(",")","[","]"]
+        cdict = {
+        '"' : '"',
+        "'": "'",
+        "“": "”",
+        "‘": "’",
+        "(":")",
+        "[": "]"
+        }
 
+        list_cleaning = []
+        x = 0
+        y = 0
+        state =0
+        state_s_d = 0
+        # for x in df[0:20].iterrows():
+        #   text = x[1].title
+        for x in df[0:20].iterrows():
+            text = x[1].title
+            for i,c in enumerate(text):
+                if c  not in clist:
+                  continue
+                else:
+                    # print(c,'--->',cdict.get(c))
+                  if (c  in cdict and state == 0):
+                    e = cdict.get(c)
+                    x = i
+                    state = 1 
+                    print (c)
+                    continue
+                    
+                  if (c != e and state != 1 ):
+                        # print (e)
+                    continue
+                  else:
+                      # print (e)
+                    y = i
+                    t = text[x + 1: y]  
+                    t = t.strip(" ")
+                    list_cleaning.append(t)
+                    x = 0
+                    y = 0
+                    state = 0
+                  continue
+        return list_cleaning   
+    else:
+        return "ไฟล์ไม่ตรงกับที่ระบบต้องการ"
 
 @app.get("/Ronnakon")
 def Ronnakon(text):
