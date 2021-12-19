@@ -64,7 +64,7 @@ def cleaning(text):
 @app.post("/cleaning_file")
 def cleaning_file(file: UploadFile = File(...)):
     if file.filename.endswith('.csv') or file.filename.endswith('.xlsx'):
-        df = pd.read_excel(file )
+        df = pd.read_excel(file.file )
         clist =  "'\"“”‘’()[]" 
         # clist = ['"',"'", "“","”","‘","’","(",")","[","]"]
         cdict = {
